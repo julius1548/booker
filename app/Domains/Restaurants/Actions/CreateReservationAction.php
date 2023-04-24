@@ -44,7 +44,7 @@ class CreateReservationAction
             if (!$tables = $this->tableSelectService->select($restaurant, $from, $to, count($contactData))) {
                 throw new NoAvailableTablesException();
             }
-            sleep(3);
+
             DB::transaction(function () use ($tables, $from, $to, $contactData) {
                 $contacts = array_map(function (array $data) {
                     $contact = $this->storeContactAction->execute($data);
